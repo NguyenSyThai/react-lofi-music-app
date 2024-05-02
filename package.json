@@ -1,6 +1,6 @@
 {
   "name": "lofi-react-app",
-  "private": false,
+  "private": true,
   "homepage": "https://nguyensythai.github.io/react-lofi-music-app/",
   "version": "0.0.0",
   "type": "module",
@@ -12,7 +12,7 @@
     "test": "vitest",
     "coverage": "vitest run --coverage",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d docs"
   },
   "dependencies": {
     "@lottiefiles/react-lottie-player": "^3.5.3",

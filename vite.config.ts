@@ -21,5 +21,8 @@ export default defineConfig({
       },
     },
   },
-  base: "/react-lofi-music-app/"
+  base: "/react-lofi-music-app/",
+  build: {
+    outDir: 'docs'
+  }
 });
