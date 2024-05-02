@@ -1,14 +1,9 @@
-import { screen, render } from "@testing-library/react";
+import React from "react";
+import { render, screen } from "@testing-library/react";
 import App from "./App";
 
-describe("App tests", () => {
-  it("should render the title", () => {
-    render(<App />);
-
-    expect(
-      screen.getByRole("heading", {
-        level: 1,
-      })
-    ).toHaveTextContent("Vite + React");
-  });
+test("renders learn react link", () => {
+  render(<App />);
+  const linkElement = screen.getByText(/learn react/i);
+  expect(linkElement).toBeInTheDocument();
 });
