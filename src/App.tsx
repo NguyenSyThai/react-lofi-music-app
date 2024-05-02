@@ -66,6 +66,7 @@ function App() {
         onTogglePictureInPicture={handleTogglePictureInPicture}
       />
       <Loading />
+      <div className="hidden">learn react</div>
     </div>
   );
 }
