@@ -2,10 +2,12 @@ import IconButton from "../IconButton";
 import { PictureInPicture, Scan } from "lucide-react";
 
 interface ScreenModeControlProps {
-  videoRef: React.RefObject<HTMLVideoElement> | null;
+  onTogglePictureInPicture: () => void;
 }
 
-const ScreenModeControl: React.FC<ScreenModeControlProps> = ({ videoRef }) => {
+const ScreenModeControl: React.FC<ScreenModeControlProps> = ({
+  onTogglePictureInPicture,
+}) => {
   const toggleFullScreen = () => {
     const elem = document.documentElement;
     if (
@@ -14,31 +16,21 @@ const ScreenModeControl: React.FC<ScreenModeControlProps> = ({ videoRef }) => {
     ) {
       if (elem.requestFullscreen) {
         elem.requestFullscreen();
-      } else if (elem.webkitRequestFullscreen) {
-        elem.webkitRequestFullscreen();
-      } else if (elem.msRequestFullscreen) {
-        elem.msRequestFullscreen();
       }
+      // else if (elem.webkitRequestFullscreen) {
+      //   elem.webkitRequestFullscreen();
+      // } else if (elem.msRequestFullscreen) {
+      //   elem.msRequestFullscreen();
+      // }
     } else {
       if (document.exitFullscreen) {
         document.exitFullscreen();
-      } else if (document.webkitExitFullscreen) {
-        document.webkitExitFullscreen();
-      } else if (document.msExitFullscreen) {
-        document.msExitFullscreen();
       }
-    }
-  };
-
-  const togglePictureInPicture = async () => {
-    try {
-      if (document.pictureInPictureElement) {
-        await document.exitPictureInPicture();
-      } else if (videoRef?.current && videoRef?.current?.readyState === 4) {
-        await videoRef?.current.requestPictureInPicture();
-      }
-    } catch (error) {
-      console.error("Error toggling Picture-in-Picture mode:", error);
+      // else if (document.webkitExitFullscreen) {
+      //   document.webkitExitFullscreen();
+      // } else if (document.msExitFullscreen) {
+      //   document.msExitFullscreen();
+      // }
     }
   };
 
@@ -46,9 +38,14 @@ const ScreenModeControl: React.FC<ScreenModeControlProps> = ({ videoRef }) => {
     <div className="flex items-center gap-[5px]">
       <IconButton
         icon={<PictureInPicture size={20} />}
-        onAction={togglePictureInPicture}
+        onAction={onTogglePictureInPicture}
+        label="Picture in Picture"
       />
-      <IconButton icon={<Scan size={20} />} onAction={toggleFullScreen} />
+      <IconButton
+        icon={<Scan size={20} />}
+        onAction={toggleFullScreen}
+        label="Full Screen"
+      />
     </div>
   );
 };

@@ -24,9 +24,13 @@ import ScreenModeControl from "./ScreenModeControl";
 
 interface BottomBarProps {
   csClassName?: string;
+  onTogglePictureInPicture: () => void;
 }
 
-const BottomBar: React.FC<BottomBarProps> = ({ csClassName }) => {
+const BottomBar: React.FC<BottomBarProps> = ({
+  csClassName,
+  onTogglePictureInPicture,
+}) => {
   const [currentTime, setCurrentTime] = useState<string>("");
 
   const wrapperClass = classnames(
@@ -55,19 +59,21 @@ const BottomBar: React.FC<BottomBarProps> = ({ csClassName }) => {
           <div className="h-[20px] w-[2px] bg-[#fff2]" />
           <AudioControl />
           <div className="h-[20px] w-[2px] bg-[#fff2]" />
-          <IconButton icon={<SlidersVertical size={20} />} />
-          <IconButton icon={<LayoutTemplate size={20} />} />
-          <IconButton icon={<Image size={20} />} />
-          <IconButton icon={<Atom size={20} />} />
-          <IconButton icon={<Calendar size={20} />} />
-          <IconButton icon={<Link size={20} />} />
-          <IconButton icon={<MonitorPlay size={20} />} />
-          <IconButton icon={<Clock size={20} />} />
-          <IconButton icon={<BookOpen size={20} />} />
-          <IconButton icon={<FileText size={20} />} />
-          <IconButton icon={<BarChart3 size={20} />} />
+          <IconButton icon={<SlidersVertical size={20} />} label="Mixer" />
+          <IconButton icon={<LayoutTemplate size={20} />} label="Templates" />
+          <IconButton icon={<Image size={20} />} label="Scenes" />
+          <IconButton icon={<Atom size={20} />} label="LofiAI" />
+          <IconButton icon={<Calendar size={20} />} label="Calendar" />
+          <IconButton icon={<Link size={20} />} label="Links" />
+          <IconButton icon={<MonitorPlay size={20} />} label="Youtube" />
+          <IconButton icon={<Clock size={20} />} label="Timer" />
+          <IconButton icon={<BookOpen size={20} />} label="Notes" />
+          <IconButton icon={<FileText size={20} />} label="PDF Reader" />
+          <IconButton icon={<BarChart3 size={20} />} label="Insights" />
           <div className="h-[20px] w-[2px] bg-[#fff2]" />
-          <ScreenModeControl videoRef={null} />
+          <ScreenModeControl
+            onTogglePictureInPicture={onTogglePictureInPicture}
+          />
         </div>
         <div className="flex items-center ml-auto">
           <IconButton icon={<CircleUserRound size={20} />} />

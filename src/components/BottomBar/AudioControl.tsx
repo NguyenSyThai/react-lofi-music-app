@@ -26,8 +26,8 @@ const AudioControl = () => {
         />
       )}
       <IconButton icon={<SkipForward size={20} />} />
-      <IconButton icon={<Volume1 size={20} />} />
-      <IconButton icon={<VolumeX size={20} />} />
+      <IconButton icon={<Volume1 size={20} />} label="Volume" />
+      <IconButton icon={<VolumeX size={20} />} label="Mute All" />
     </div>
   );
 };
