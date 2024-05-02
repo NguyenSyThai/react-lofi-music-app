@@ -1,6 +1,6 @@
 {
   "name": "lofi-react-app",
-  "private": true,
+  "private": false,
   "homepage": "https://nguyensythai.github.io/react-lofi-music-app/",
   "version": "0.0.0",
   "type": "module",
