@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import BackgroundCover from "./components/BackgroundCover";
 import BottomBar from "./components/BottomBar";
 import Loading from "./components/Loading";
+import axios from "axios";
 
 function App() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -53,6 +54,48 @@ function App() {
       }
     }
   };
+
+  // const options = {
+  //   method: "GET",
+  //   url: "https://spotify23.p.rapidapi.com/search/",
+  //   params: {
+  //     q: "<REQUIRED>",
+  //     type: "multi",
+  //     offset: "0",
+  //     limit: "10",
+  //     numberOfTopResults: "5",
+  //   },
+  //   headers: {
+  //     "X-RapidAPI-Key": "b63945aa1amsh5a04fe452d068afp1803afjsn0f26108abcd0",
+  //     "X-RapidAPI-Host": "spotify23.p.rapidapi.com",
+  //   },
+  // };
+
+  const options = {
+    method: "GET",
+    url: "https://shazam.p.rapidapi.com/songs/get-details",
+    params: {
+      key: "40333609",
+      locale: "en-US",
+    },
+    headers: {
+      "X-RapidAPI-Key": "b63945aa1amsh5a04fe452d068afp1803afjsn0f26108abcd0",
+      "X-RapidAPI-Host": "shazam.p.rapidapi.com",
+    },
+  };
+
+  const getMusicApi = async () => {
+    try {
+      const response = await axios.request(options);
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    getMusicApi();
+  }, []);
 
   return (
     <div className="flex items-center justify-center w-full">

@@ -9,7 +9,29 @@ import {
   VolumeX,
 } from "lucide-react";
 
-const AudioControl = () => {
+interface AudioControlProps {
+  isPlaying: boolean;
+  repeat: boolean;
+  setRepeat?: () => void;
+  shuffle?: () => void;
+  setShuffle?: () => void;
+  currentSongs: any[];
+  handlePlayPause?: () => void;
+  handlePrevSong?: () => void;
+  handleNextSong?: () => void;
+}
+
+const AudioControl: React.FC<AudioControlProps> = ({
+  isPlaying,
+  repeat,
+  setRepeat,
+  shuffle,
+  setShuffle,
+  currentSongs,
+  handlePlayPause,
+  handleNextSong,
+  handlePrevSong,
+}) => {
   const [isPlay, setPlay] = useState<boolean>(false);
   return (
     <div className="flex items-center gap-[5px]">
@@ -28,6 +50,10 @@ const AudioControl = () => {
       <IconButton icon={<SkipForward size={20} />} />
       <IconButton icon={<Volume1 size={20} />} label="Volume" />
       <IconButton icon={<VolumeX size={20} />} label="Mute All" />
+      <div className="w-full flex justify-center items-center flex-col">
+        {/* <img src={react} alt="loader" className="w-32 h-32 object-contain" /> */}
+        <h1 className="font-bold text-2xl text-white mt-2">123123</h1>
+      </div>
     </div>
   );
 };
